@@ -1,0 +1,18 @@
+plugins {
+	id 'java'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.apache.camel:camel-core:3.20.0'
+	implementation 'org.apache.camel:camel-file:3.20.0'
+	implementation 'org.slf4j:slf4j-api:1.7.36'
+	implementation 'org.slf4j:slf4j-simple:1.7.36'
+	implementation 'io.hawt:hawtio-app:2.13.5'
+}
+
+sourceCompatibility = '1.17'
+targetCompatibility = '1.17'
