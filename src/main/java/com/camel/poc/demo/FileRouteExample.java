@@ -3,9 +3,9 @@ package com.camel.poc.demo;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
-import io.hawt.embedded.Main;
+//import io.hawt.embedded.Main;
 
-public class FileRouteExample {
+public class FileRouteExample{} /*{
     public static void main(String[] args) throws Exception {
         // Create Camel context
         CamelContext context = new DefaultCamelContext();
@@ -43,4 +43,4 @@ public class FileRouteExample {
         // Stop the Camel context
         context.stop();
     }
-}
+}*/

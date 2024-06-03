@@ -1,5 +1,7 @@
 plugins {
 	id 'java'
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 repositories {
@@ -7,12 +9,17 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.apache.camel:camel-core:3.20.0'
-	implementation 'org.apache.camel:camel-file:3.20.0'
-	implementation 'org.slf4j:slf4j-api:1.7.36'
-	implementation 'org.slf4j:slf4j-simple:1.7.36'
-	implementation 'io.hawt:hawtio-app:2.13.5'
+	implementation 'org.springframework.boot:spring-boot-starter'// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.2.3'
+	implementation 'org.apache.camel.springboot:camel-spring-boot-starter:3.20.0'
+	implementation 'org.apache.camel:camel-core:3.22.1'
+	implementation 'org.apache.camel:camel-bindy:3.21.2'
+	implementation 'org.apache.camel:camel-jdbc:3.21.2'
+	runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-
+test {
+	useJUnitPlatform()
+}
 sourceCompatibility = '1.17'
 targetCompatibility = '1.17'
