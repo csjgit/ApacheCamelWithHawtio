@@ -11,9 +11,9 @@ public class OrderRoute extends RouteBuilder {
     @Override
     public void configure() {
         // Flow 1: Read CSV file and unmarshal to Order objects
-        from("file:input").log("Reading file: ${header.CamelFileName}")
+        from("file:input1/").log("Reading file: ${header.CamelFileName}")
                 .unmarshal().bindy(BindyType.Csv, Order.class)
-                .split(body().tokenize("\n")).streaming()
+                .split(body()).streaming().log("Unmarshalled Order: ${body}")
                 .to("direct:processOrder");
 
         // Flow 2: Process orders and route based on conditions
@@ -35,30 +35,6 @@ public class OrderRoute extends RouteBuilder {
                 .to("direct:db2")
                 .otherwise()
                 .to("direct:rejected");
-
-        // Flow 3: Route to DB1
-        from("direct:db1")
-                .process(exchange -> {
-                    Order order = exchange.getIn().getBody(Order.class);
-                    String insertQuery = String.format(
-                            "INSERT INTO orders_db1 (order_id, customer_name, product, quantity, price) VALUES ('%s', '%s', '%s', %d, %f)",
-                            order.getOrderId(), order.getCustomerName(), order.getProduct(), order.getQuantity(), order.getPrice()
-                    );
-                    exchange.getIn().setBody(insertQuery);
-                })
-                .to("jdbc:dataSource");
-
-        // Flow 4: Route to DB2
-        from("direct:db2")
-                .process(exchange -> {
-                    Order order = exchange.getIn().getBody(Order.class);
-                    String insertQuery = String.format(
-                            "INSERT INTO orders_db2 (order_id, customer_name, product, quantity, price) VALUES ('%s', '%s', '%s', %d, %f)",
-                            order.getOrderId(), order.getCustomerName(), order.getProduct(), order.getQuantity(), order.getPrice()
-                    );
-                    exchange.getIn().setBody(insertQuery);
-                })
-                .to("jdbc:dataSource");
 
         // Flow 5: Handle rejected orders
         from("direct:rejected")

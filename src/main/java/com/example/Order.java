@@ -3,7 +3,7 @@ package com.example;
 import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
-@CsvRecord(separator = ",")
+@CsvRecord(separator = ",", skipFirstLine = false)
 public class Order {
 
     @DataField(pos = 1)
@@ -42,4 +42,16 @@ public class Order {
 
     public String getDestination() { return destination; }
     public void setDestination(String destination) { this.destination = destination; }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId='" + orderId + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", product='" + product + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", destination='" + destination + '\'' +
+                '}';
+    }
 }
