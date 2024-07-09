@@ -1,0 +1,5 @@
+{
+  "agentContext": "/jolokia",
+  "discoveryEnabled": true,
+  "debug": true
+}

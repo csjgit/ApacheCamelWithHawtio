@@ -20,6 +20,7 @@ public class OrderRoute extends RouteBuilder {
         from("direct:processOrder")
                 .process(exchange -> {
                     Order order = exchange.getIn().getBody(Order.class);
+                    //Thread.sleep(200000);
                     if ("DB1".equalsIgnoreCase(order.getDestination())) {
                         exchange.getIn().setHeader("destination", "db1");
                     } else if ("DB2".equalsIgnoreCase(order.getDestination())) {
@@ -37,7 +38,8 @@ public class OrderRoute extends RouteBuilder {
                 .to("direct:rejected");
 
         // Flow 5: Handle rejected orders
-        from("direct:rejected")
+        from("direct:rejected").transform().body(Order.class, order->
+                   order.toString())
                 .to("file:src/output/rejected?fileName=rejected-orders.txt&fileExist=Append");
     }
 }

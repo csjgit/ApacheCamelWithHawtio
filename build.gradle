@@ -9,14 +9,35 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
+	//implementation 'org.springframework.boot:spring-boot-starter'// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.2.3'
 	implementation 'org.apache.camel.springboot:camel-spring-boot-starter:3.20.0'
+	//implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.apache.camel:camel-core:3.22.1'
 	implementation 'org.apache.camel:camel-bindy:3.21.2'
 	implementation 'org.apache.camel:camel-jdbc:3.21.2'
-	runtimeOnly 'com.h2database:h2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'com.h2database:h2'//implementation group: 'org.apache.camel', name: 'camel-hawtio', version: '3.19.0'
+	implementation 'io.hawt:hawtio-springboot:3.0.0'
+	// https://mvnrepository.com/artifact/org.apache.camel/camel-management
+	implementation 'org.apache.camel:camel-management:3.20.0'
+
+	//implementation 'org.apache.camel.springboot:camel-management-starter:4.0.1'
+
+	//implementation 'org.jolokia:jolokia-jvm:1.7.2'
+	//implementation 'org.jolokia:jolokia-agent-jvm:2.0.3'
+	//implementation 'org.jolokia:jolokia-support-spring:2.0.0'
+	//implementation 'io.hawt:hawtio-core:2.17.3'
+	//implementation 'org.jolokia:jolokia-core:1.7.2'
+	//implementation 'org.springframework.boot:spring-boot-starter-web:3.1.6'
+	//implementation 'org.jolokia:jolokia-server-core:2.0.3'
+	//implementation 'org.jolokia:jolokia-service-jmx:2.0.3'
+	//implementation 'org.apache.camel.springboot:camel-management-starter:4.0.0'
+// https://mvnrepository.com/artifact/org.apache.camel.springboot/camel-spring-boot-xml-starter
+	//implementation 'org.apache.camel.springboot:camel-spring-boot-xml-starter:4.6.0'
+
+
+
+
 }
 test {
 	useJUnitPlatform()
